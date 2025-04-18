@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Lab 8 – TAMU Feature Layer</title>
+  <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no" />
+  <!-- ArcGIS API -->
+  <link
+    rel="stylesheet"
+    href="https://js.arcgis.com/4.29/esri/themes/light/main.css"
+  />
+  <!-- ArcGIS API -->
+  <script src="https://js.arcgis.com/4.29/"></script>
+  <style>
+    html,
+    body,
+    #viewDiv {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+    }
+  </style>
+</head>
+<body>
+  <div id="viewDiv"></div>
+
+  <script>
+    require(
+      ["esri/Map", "esri/views/MapView", "esri/layers/FeatureLayer"],
+      (Map, MapView, FeatureLayer) => {
+        const featureLayer = new FeatureLayer({
+          url:
+            "https://services1.arcgis.com/qr14biwnHA6Vis6l/arcgis/rest/services/Lab8_huzhao_webgis/FeatureServer/0"
+        });
+
+        const map = new Map({
+          basemap: "arcgis-topographic",
+          layers: [featureLayer]
+        });
+
+        new MapView({
+          container: "viewDiv",
+          map: map,
+          center: [-96.341, 30.615],
+          zoom: 16
+        });
+      }
+    );
+  </script>
+</body>
+</html>
